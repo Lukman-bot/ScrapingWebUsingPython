@@ -7,11 +7,17 @@ Kode Python ini dirancang untuk melakukan scraping konten dari serangkaian URL y
 1. **Clone Repository:** Clone repository ini ke mesin lokal Anda menggunakan perintah berikut:
 
 2. **Instal Dependensi:** Buka direktori proyek dan instal dependensi yang diperlukan menggunakan pip:
+```bash
+pip install requests bs4 tqdm
+```
 
 
 ## Penggunaan
 
 1. **Jalankan Skrip:** Jalankan skrip `main.py` menggunakan interpreter Python. Pastikan Anda berada di dalam direktori proyek:
+```bash
+python main.py
+```
 
 2. **Lihat Output:** Setelah skrip dijalankan, itu akan melakukan scraping konten dari URL yang ditentukan dan menyimpannya ke file teks. Anda dapat menemukan file teks yang disimpan di direktori yang sama dengan skrip.
 
