@@ -67,19 +67,22 @@ def upload_file(file_path, url, id_pengguna, id_light_novel):
 
         return True
     except requests.exceptions.RequestException as e:
-        try:
-            error_json = e.response.json()
-            if e.response.status_code == 422:
-                message = error_json.get('message', 'Unknown error')
-                if isinstance(message, dict):
-                    for key, value in message.items():
-                        print(f"Error: {value[0]}")
+        if e.response is not None:
+            try:
+                error_json = e.response.json()
+                if e.response.status_code == 422:
+                    message = error_json.get('message', 'Unknown error')
+                    if isinstance(message, dict):
+                        for key, value in message.items():
+                            print(f"Error: {value[0]}")
+                    else:
+                        print(f"Error: {message}")
                 else:
-                    print(f"Error: {message}")
-            else:
-                print("Error:", e.response.text)
-        except ValueError:
-            print("Error: Failed to parse error response")
+                    print("Error:", e.response.text)
+            except ValueError:
+                print("Error: Failed to parse error response")
+        else:
+            print("Error: Unable to connect to the server. Please check the server status and try again.")
         return False
     finally:
         files['file'].close()
